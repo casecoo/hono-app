@@ -7,7 +7,7 @@ import { dataSchema, idParamSchema } from '../validation/schemas'
 const apiRouter = new Hono()
 
 apiRouter.post(
-    '/api/data',
+    '/data',
     zValidator('json', dataSchema),
     (c) => {
       const body = c.req.valid('json')
@@ -18,7 +18,7 @@ apiRouter.post(
 
 
   apiRouter.put(
-    '/api/data/:id',
+    '/data/:id',
     zValidator('param', idParamSchema),
     zValidator('json', dataSchema.partial()),
     (c) => {
@@ -34,7 +34,7 @@ apiRouter.post(
 
 //This method is not allowed to use. It won't work on browser.
 apiRouter.delete(
-    '/api/data/:id',
+    '/data/:id',
     zValidator('param', idParamSchema),
     (c) => {
       const { id } = c.req.valid('param')
